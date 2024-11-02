@@ -1,46 +1,33 @@
-# Web Frameworks
-fastapi==0.95.0
-uvicorn[standard]==0.20.0
+fastapi
+uvicorn[standard]
 
-# Machine Learning e Deep Learning
-tensorflow==2.13.0
-torch==2.0.0
-transformers==4.30.0
-scikit-learn==1.2.2
+tensorflow
+torch
+transformers
+scikit-learn
 
-# Manipulação de Dados
-pandas==1.5.3
-numpy==1.24.3
+pandas
+numpy
 
-# Visualização de Dados
-matplotlib==3.7.1
-seaborn==0.12.2
+matplotlib
+seaborn
+pillow
 
-# Manipulação de Imagens
-pillow==9.5.0
 
-# Web Scraping
-beautifulsoup4==4.12.0
+beautifulsoup4
 
-# Processamento de Linguagem Natural
-nltk==3.8.1
+nltk
 
-# Ferramentas auxiliares e operações no SO
-python-multipart==0.0.5
-psycopg2-binary==2.9.6  # Conector PostgreSQL
-requests==2.28.1
-os-sys==2.1.2
+python-multipart
+psycopg2-binary
+requests
 
-# Validação e Testes
 pytest==7.2.2
 
-# Streamlit para interface web rápida
 streamlit==1.24.0
 
-# LangChain 
-langchain==0.3.0
-langchain-groq==0.2.0
-langchain-community==0.3.0
+langchain
+langchain-groq
+langchain-community
 
-# Hugging Face Hub (para deploy de modelos)
-huggingface-hub==0.14.1
+huggingface-hub
