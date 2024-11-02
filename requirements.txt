@@ -1,5 +1,7 @@
 fastapi
 uvicorn[standard]
+Flask==2.0.3
+fastapi
 
 tensorflow
 torch
@@ -12,7 +14,7 @@ numpy
 matplotlib
 seaborn
 pillow
-
+pypdf
 
 beautifulsoup4
 
