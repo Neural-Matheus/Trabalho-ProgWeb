@@ -1,11 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Avalia Aí</title>
-    {% load static %} <!-- Carrega as tags de arquivos estáticos do Django -->
-    <link rel="stylesheet" href="{% static 'static/pagina_login.css' %}">
+    <link rel="stylesheet" href="{% static 'static/style.css' %}" />
 </head>
 <body>
     <div class="container">
@@ -13,20 +13,21 @@
             <h1>Avalia Aí</h1>
             <p>Análise de Produtos com IA</p>
         </div>
-        <div class="right-panel">
-            <!-- Ação do formulário adaptada para Django -->
-            <form class="form" method="POST" action="{% url 'cadastro' %}">
-                {% csrf_token %} <!-- Token CSRF para segurança no Django -->
-                
-                <input type="email" name="email" placeholder="email" required>
-                <input type="password" name="senha" placeholder="senha" required>
-                <button type="submit">Cadastro</button>
-                
-                <!-- Link de cadastro adaptado para Django -->
+            <form class="form" method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div>
+                    {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div>
+                    <button type="submit">Entrar</button>
+                </div>
                 <a href="{% url 'cadastro' %}" class="login-link">Não possui cadastro?</a>
             </form>
         </div>
     </div>
-    <script src="{% static 'js/pagina_login.js' %}"></script>
 </body>
 </html>

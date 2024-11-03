@@ -1,35 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <!-- Usando Django para carregar o CSS -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'static/pagina_cadastro.css' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro - Avalia Aí</title>
+    <link rel="stylesheet" href="{% static 'static/style.css' %}" />
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <!-- Ação do formulário adaptada para Django -->
-    <form action="{% url 'cadastro' %}" method="POST">
-        {% csrf_token %} <!-- Token CSRF para segurança no Django -->
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
-        
-        <button type="submit">Cadastrar</button>
-    </form>
-
-    <!-- Exibindo mensagens de sucesso e erro no Django -->
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <div class="container">
+        <div class="left-panel">
+            <h1>Avalia Aí</h1>
+            <p>Análise de Produtos com IA</p>
+        </div>
+        <div class="right-panel">
+            <h1>Cadastro</h1>
+            <form class="form" action="{% url 'cadastro' %}" method="POST">
+                {% csrf_token %}
+                <div>
+                    {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div>
+                    <button type="submit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
