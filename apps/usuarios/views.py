@@ -6,6 +6,10 @@ from django.http import HttpResponseServerError
 import os
 import subprocess
 import psutil
+from django.contrib.auth.models import User
+from django.contrib import auth, messages
+
+from apps.usuarios.forms import LoginForms, CadastroForms
 
 from apps.usuarios.forms import CadastroForms, LoginForms
 
@@ -16,19 +20,19 @@ def login_view(request):
         form = LoginForms(request.POST)
 
         if form.is_valid():
-            email = form["email"].value()
+            username = form["username"].value()
             senha = form["senha"].value() 
 
             usuario = auth.authenticate(
                 request = request, 
-                email = email,
+                username = username,
                 password = senha
             )
             
             if usuario is not None:
                 auth.login(request, usuario)
-                messages.success(request, f"{email} logado com sucesso!")
-                return redirect("index")
+                messages.success(request, f"{username} logado com sucesso!")
+                return redirect('http://localhost:8501')
             else:
                 messages.error(request, "Erro ao efetuar login!")
                 return redirect("login")
@@ -43,29 +47,27 @@ def cadastro_view(request):
         form = CadastroForms(request.POST)
 
         if form.is_valid():
-            email = form["email"].value()
+            username = form["username"].value()
             senha1 = form["senha1"].value()
 
-            if User.objects.filter(email = email).exists():
+            if User.objects.filter(username = username).exists():
                 messages.error(request, "Usuário já existe!")
                 return redirect("cadastro")
             
             usuario = User.objects.create_user(
-               email = email, password = senha1
+               username = username, password = senha1
             )
 
             usuario.save()
-            messages.success(request, f"{email} cadastrado com sucesso!")
+            messages.success(request, f"{username} cadastrado com sucesso!")
             return redirect("login")
-        
-        # Exibe mensagem flash
-        messages.success(request, f'Recebido cadastro com email: {email}')
         
         # Redireciona para a página de login
         return redirect(reverse('login'))
     
     # Renderiza a página de cadastro
-    return render(request, 'signup/pagina_cadastro.html')
+    return render(request, "signup/pagina_cadastro.html", {"form" : form})
+
 def iniciar_streamlit(request):
     caminho_script = os.path.abspath(os.path.join(os.path.dirname(__file__), 'app/templates/streamlit/model.py'))
 
