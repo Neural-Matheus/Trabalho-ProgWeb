@@ -100,5 +100,6 @@ def delete_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if request.method == "POST":
         user.delete()
-        return redirect("list/user_list")
+        users = User.objects.all()
+        return render(request, "list/user_list.html", {"users": users})
     return render(request, "list/confirm_delete.html", {"user": user})

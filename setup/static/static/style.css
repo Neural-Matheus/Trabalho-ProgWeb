@@ -21,6 +21,17 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow: hidden;
+  padding: 20px;
+}
+
+.container-column {
+  display: flex;
+  width: 80%;
+  max-width: 900px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
   flex-direction: column;
   padding: 20px;
 }
