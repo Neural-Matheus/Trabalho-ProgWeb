@@ -4,8 +4,11 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from langchain_community.document_loaders import WebBaseLoader, YoutubeLoader, PyPDFLoader
+from dotenv import load_dotenv
 
-api_key = ''
+load_dotenv()
+
+api_key = os.getenv('GROQ_API_KEY')
 os.environ['GROQ_API_KEY'] = api_key
 
 chat = ChatGroq(model='llama-3.1-70b-versatile')

@@ -1,7 +1,6 @@
 # Frameworks Web
 fastapi
 uvicorn[standard]
-Flask
 
 # Machine Learning e Deep Learning
 tensorflow
@@ -46,3 +45,4 @@ huggingface-hub
 
 django
 python-dotenv
+psutil
