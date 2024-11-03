@@ -25,6 +25,7 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>
+                    <a href="{% url 'edit_user_email' user.id %}" class="edit-button">Editar</a>
                     <a href="{% url 'delete_user' user.id %}" class="delete-button">Excluir</a>
                 </td>
             </tr>

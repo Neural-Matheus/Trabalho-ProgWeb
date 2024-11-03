@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 
 class LoginForms(forms.Form):
     username = forms.EmailField(
@@ -68,3 +69,9 @@ class CadastroForms(forms.Form):
                 raise forms.ValidationError("As senhas não são iguais!")
             else:
                 return senha2
+            
+class UserEmailForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']
+

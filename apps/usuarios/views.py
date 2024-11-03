@@ -1,18 +1,16 @@
 # main/views.py
+import os
+import subprocess
+import psutil
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
 from django.http import HttpResponseServerError
-import os
-import subprocess
-import psutil
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-
-from apps.usuarios.forms import LoginForms, CadastroForms
-
+from apps.usuarios.forms import LoginForms, CadastroForms, UserEmailForm
 from apps.usuarios.forms import CadastroForms, LoginForms
 
 def login_view(request):
@@ -103,3 +101,18 @@ def delete_user(request, user_id):
         users = User.objects.all()
         return render(request, "list/user_list.html", {"users": users})
     return render(request, "list/confirm_delete.html", {"user": user})
+
+
+def edit_user_email(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    
+    if request.method == 'POST':
+        form = UserEmailForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            users = User.objects.all()
+            return render(request, "list/user_list.html", {"users": users})
+    else:
+        form = UserEmailForm(instance=user)  # Preenche o formulário com os dados do usuário existente
+
+    return render(request, 'list/edit_user_email.html', {'form': form, 'user': user})
