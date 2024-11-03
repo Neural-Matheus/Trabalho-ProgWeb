@@ -4,20 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excluir Usuário</title>
+    <title>Excluir Usuário - {{ user.username }}</title>
     <link rel="stylesheet" href="{% static 'static/style.css' %}">
 </head>
 <body>
-    <div class="container">
-        <div class="right-panel">
+    <main class="container">
+        <section class="right-panel">
             <h2>Confirmação de Exclusão</h2>
             <p>Tem certeza que deseja excluir o usuário <strong>{{ user.username }}</strong>?</p>
-            <form method="post">
+            <form method="post" action="{% url 'delete_user' user.id %}">
                 {% csrf_token %}
-                <button type="submit" class="delete-button">Sim, excluir</button>
-                <a href="{% url 'user_list' %}" class="back-link">Cancelar</a>
+                <div class="form-actions">
+                    <button type="submit" class="delete-button">Sim, excluir</button>
+                    <a href="{% url 'user_list' %}" class="back-link">Cancelar</a>
+                </div>
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
 </body>
 </html>

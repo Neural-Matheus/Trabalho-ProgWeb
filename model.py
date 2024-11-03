@@ -10,29 +10,23 @@ os.environ['GROQ_API_KEY'] = api_key
 
 chat = ChatGroq(model='llama-3.1-70b-versatile')
 
-# Dividir o título e o botão em colunas para posicioná-los lado a lado
 col1, col2, col3 = st.columns([0.6, 0.2, 0.2])
 with col1:
-    st.title("Avalia Aí - Chat Simples")
+    st.title("Avalia Aí")
 with col2:
     if st.button('Ver Lista de Usuários'):
-        # Redireciona automaticamente para a URL da lista de usuários no Django
         st.write('<meta http-equiv="refresh" content="0; url=http://localhost:8000/users/">', unsafe_allow_html=True)
 with col3:
     if st.button('Voltar para o Login'):
-        # Redireciona automaticamente para a URL de login no Django
         st.write('<meta http-equiv="refresh" content="0; url=http://localhost:8000/login/">', unsafe_allow_html=True)
 
-# Verifica se existe o histórico de mensagens na sessão
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Exibe mensagens armazenadas no histórico
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# Captura a entrada do usuário e exibe a resposta
 if prompt := st.chat_input("Digite sua pergunta:"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):

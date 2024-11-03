@@ -8,22 +8,26 @@
     <link rel="stylesheet" href="{% static 'static/style.css' %}" />
 </head>
 <body>
-    <div class="container">
-        <div class="left-panel">
+    <header class="container">
+        <section class="left-panel">
             <h1>Editar Email</h1>
             <p>Altere o email do usuário {{ user.username }} ao lado</p>
-        </div>
-        <div class="right-panel">
+        </section>
+        <main class="right-panel">
             <form method="post" class="form" action="{% url 'edit_user_email' user.id %}">
                 {% csrf_token %}
-                <label for="username">Novo Email:</label>
-                {{ form.username }}
-                <button type="submit">Salvar Alterações</button>
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Novo Email:</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Salvar Alterações</button>
+                </div>
                 <p class="back-link">
                     <a href="{% url 'user_list' %}" class="user-list-button">Voltar à Lista de Usuários</a>
                 </p>
             </form>
-        </div>
-    </div>
+        </main>
+    </header>
 </body>
 </html>

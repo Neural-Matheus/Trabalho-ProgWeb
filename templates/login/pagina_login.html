@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="{% static 'static/style.css' %}" />
 </head>
 <body>
-    <div class="container">
-        <div class="left-panel">
+    <header class="container">
+        <section class="left-panel">
             <h1>Avalia Aí</h1>
             <p>Análise de Produtos com IA</p>
-        </div>
+        </section>
+        <main class="right-panel">
+            <h1>Login</h1>
             <form class="form" method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
                 <div>
@@ -26,9 +28,11 @@
                 <div>
                     <button type="submit">Entrar</button>
                 </div>
-                <a href="{% url 'cadastro' %}" class="login-link">Não possui cadastro?</a>
+                <p>
+                    <a href="{% url 'cadastro' %}" class="login-link">Não possui cadastro?</a>
+                </p>
             </form>
-        </div>
-    </div>
+        </main>
+    </header>
 </body>
 </html>
