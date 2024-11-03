@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Usuários - Avalia Aí</title>
+    <link rel="stylesheet" href="{% static 'static/style.css' %}" />
+</head>
+<body>
+    <div class="container">
+        <!-- Botão para voltar ao chat -->
+        <a href="{% url 'chat' %}" class="user-list-button">Voltar ao Chat</a>
+        
+        <h2>Lista de Usuários</h2>
+        
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                    <a href="{% url 'delete_user' user.id %}" class="delete-button">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

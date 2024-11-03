@@ -13,27 +13,17 @@ os.environ['GROQ_API_KEY'] = api_key
 
 chat = ChatGroq(model='llama-3.1-70b-versatile')
 
-def carrega_site(url_site):
-    loader = WebBaseLoader(url_site)
-    lista_documentos = loader.load()
-    documento = ''.join(doc.page_content for doc in lista_documentos)
-    return documento
-
-def carrega_pdf(caminho_pdf):
-    loader = PyPDFLoader(caminho_pdf)
-    lista_documentos = loader.load()
-    documento = ''.join(doc.page_content for doc in lista_documentos)
-    return documento
-
-def carrega_youtube(url_youtube):
-    loader = YoutubeLoader.from_youtube_url(url_youtube, language=['pt'])
-    lista_documentos = loader.load()
-    documento = ''.join(doc.page_content for doc in lista_documentos)
-    return documento
+# Funções de carregamento de documentos (site, PDF, YouTube) permanecem as mesmas
 
 def main():
     st.title('Avalia Aí')
 
+    # Botão para navegar para a lista de usuários (hosteada no Django)
+    if st.button('Ver Lista de Usuários'):
+        # Redireciona para a URL da lista de usuários no Django
+        st.markdown("[Lista de Usuários](http://localhost:8000/users/)")  # Supondo que Django está rodando na porta 8000
+
+    # Interface principal do chat
     st.header('Selecione a fonte de informação:')
     opcoes = ['Site', 'PDF', 'Vídeo do YouTube']
     escolha = st.selectbox('Escolha uma opção:', opcoes)

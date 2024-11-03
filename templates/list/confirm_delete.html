@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Usuário</title>
+    <link rel="stylesheet" href="{% static 'static/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="right-panel">
+            <h2>Confirmação de Exclusão</h2>
+            <p>Tem certeza que deseja excluir o usuário <strong>{{ user.username }}</strong>?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete-button">Sim, excluir</button>
+                <a href="{% url 'user_list' %}" class="back-link">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

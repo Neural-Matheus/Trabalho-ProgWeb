@@ -1,5 +1,5 @@
 # main/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
 from django.http import HttpResponseServerError
@@ -8,6 +8,8 @@ import subprocess
 import psutil
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from apps.usuarios.forms import LoginForms, CadastroForms
 
@@ -87,3 +89,16 @@ def iniciar_streamlit(request):
 
     # Redireciona o usuário para a interface do Streamlit
     return redirect('http://localhost:8501')
+
+@login_required
+def user_list(request):
+    users = User.objects.all()
+    return render(request, "list/user_list.html", {"users": users})
+
+@login_required
+def delete_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if request.method == "POST":
+        user.delete()
+        return redirect("list/user_list")
+    return render(request, "list/confirm_delete.html", {"user": user})
