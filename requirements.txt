@@ -43,3 +43,6 @@ langchain
 langchain-groq
 langchain-community
 huggingface-hub
+
+django
+python-dotenv
