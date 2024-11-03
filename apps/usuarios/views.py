@@ -105,7 +105,7 @@ def delete_user(request, user_id):
 
 def edit_user_email(request, user_id):
     user = get_object_or_404(User, id=user_id)
-    
+
     if request.method == 'POST':
         form = UserEmailForm(request.POST, instance=user)
         if form.is_valid():

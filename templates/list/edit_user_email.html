@@ -14,10 +14,10 @@
             <p>Altere o email do usuário {{ user.username }} ao lado</p>
         </div>
         <div class="right-panel">
-            <form method="post" class="form">
+            <form method="post" class="form" action="{% url 'edit_user_email' user.id %}">
                 {% csrf_token %}
-                <label for="email">Novo Email:</label>
-                {{ form.email }}
+                <label for="username">Novo Email:</label>
+                {{ form.username }}
                 <button type="submit">Salvar Alterações</button>
                 <p class="back-link">
                     <a href="{% url 'user_list' %}" class="user-list-button">Voltar à Lista de Usuários</a>

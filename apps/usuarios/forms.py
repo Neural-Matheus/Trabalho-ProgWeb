@@ -73,5 +73,5 @@ class CadastroForms(forms.Form):
 class UserEmailForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['username']
 
