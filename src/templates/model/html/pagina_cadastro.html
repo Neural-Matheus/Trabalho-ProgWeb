@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Avalia Aí</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pagina_cadastro.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Avalia Aí</h1>
+            <p>Análise de Produtos com IA</p>
+        </div>
+        <div class="right-panel">
+            <form class="form" method="POST" action="{{ url_for('main.login') }}">
+                <input type="email" name="email" placeholder="email" required>
+                <input type="password" name="senha" placeholder="senha" required>
+                <button type="submit">Cadastro</button>
+                <a href="{{ url_for('main.login') }}" class="login-link">Já possui cadastro?</a>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/pagina_cadastro.js') }}"></script>
+</body>
+</html>

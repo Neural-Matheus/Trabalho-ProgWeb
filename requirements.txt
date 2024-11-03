@@ -1,35 +1,45 @@
+# Frameworks Web
 fastapi
 uvicorn[standard]
-Flask==2.0.3
-fastapi
+Flask
 
+# Machine Learning e Deep Learning
 tensorflow
 torch
 transformers
 scikit-learn
 
+# Manipulação de Dados
 pandas
 numpy
 
+# Visualização de Dados
 matplotlib
 seaborn
+
+# Manipulação de Imagens e PDFs
 pillow
 pypdf
 
+# Web Scraping
 beautifulsoup4
 
+# Processamento de Linguagem Natural
 nltk
 
+# Conexão com banco de dados e operações no sistema
 python-multipart
 psycopg2-binary
 requests
 
+# Testes
 pytest==7.2.2
 
+# Streamlit para interface web rápida
 streamlit==1.24.0
 
+# LangChain e integração com Hugging Face
 langchain
 langchain-groq
 langchain-community
-
 huggingface-hub
