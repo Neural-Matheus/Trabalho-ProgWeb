@@ -27,13 +27,31 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("Digite sua pergunta:"):
+if prompt := st.chat_input("Informe a avaliação de usuário:"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
     mensagens_completas = [
-        SystemMessage(content="Você é um assistente amigável."),
+        SystemMessage(content=
+                      """
+                    Hello, AI! Please act as an expert in review analysis and product improvement with years of consultancy experience in this field. I will provide a product review, and I need you to perform 3 tasks in this order:
+
+                    Analyze the overall sentiment of the review.
+                    Identify the positive and negative points mentioned.
+                    Suggest a specific improvement I can implement based on the customer's feedback.
+                    Use <<TEXT>> as placeholders for the information, and provide your response in Brazilian Portuguese in the following format:
+
+                    Sentimento predominante: <<summary of sentiment analysis>>
+                    Pontos positivos:
+                    <<list of positive points>>
+                    Pontos negativos:
+                    <<list of negative points>>
+
+                    Sugestão de melhoria:
+                    <<specific, actionable improvement suggestion>>
+                      """
+        ),
         *[
             HumanMessage(content=msg["content"]) if msg["role"] == "user" else AIMessage(content=msg["content"])
             for msg in st.session_state.messages
